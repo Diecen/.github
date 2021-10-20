@@ -1,18 +1,25 @@
-name: 'say-hello'
-description: 'Returns a greeting output with a greeting to the input name'
+name: "Perform a code test"
+description: "Installing dependenncies an running a test"
+
 inputs:
-  name:
-    required: true
-outputs:
-  greeting:
-    required: true
+   token:
+     description: "Token needed to access files "
+     required: true
+
 runs:
-  using: "composite"
-  steps:
-    - name: say-hello
-      shell: bash
-      env:
-        INPUT_NAME: ${{ inputs.name }}
-      run: |
-        GREETING="Hello $INPUT_NAME"
-        echo "::set-output name=greeting::$GREETING"
+   using: "composite"
+   steps:
+       - name: Install Python 3
+         uses: actions/setup-python@v1
+         with:
+           python-version: 3.7
+       - name: Install dependencies
+         shell: bash
+         env:
+           GITHUB_TOKEN: ${{inputs.token}}
+         run: |
+           python -m pip install --upgrade pip
+           pip install -r requirements.txt --use-deprecated=legacy-resolver
+       - name: Run Tests
+         shell: bash
+         run: python -m unittest discover tests/
