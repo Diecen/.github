@@ -12,7 +12,7 @@ inputs:
 runs:
    using: "composite"
    steps:
-         if:  ${{inputs.token2}} == 'false'
+   if:  ${{inputs.token2}} == 'false'
        - name: Install Python 3
          uses: actions/setup-python@v1
          with:
