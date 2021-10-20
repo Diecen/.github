@@ -6,7 +6,6 @@ inputs:
     description: "Token needed to access files "
     required: true
  
-
 runs:
   using: "composite"
   steps:
