@@ -12,12 +12,12 @@ inputs:
 runs:
    using: "composite"
    steps:
+         if:  ${{inputs.token2}} == 'false'
        - name: Install Python 3
          uses: actions/setup-python@v1
          with:
            python-version: 3.7
        - name: Install Python 3
-         if:  ${{inputs.token2}} == 'false'
          uses: actions/setup-python@v1
          with:
            python-version: 3.7
