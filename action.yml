@@ -29,6 +29,7 @@ runs:
         run: | 
           if [[ "${{inputs.repository-type}}" = "typescript" ]]; then
             if [ -n ${{inputs.nested-folder}} ]; then
+                 ls -la
                  cd ${inputs.nested-folder}
                  fi
             npm install
@@ -36,6 +37,7 @@ runs:
             exit 0
           elif [[ "${{inputs.repository-type}}" = "python" ]]; then
             if [ -n ${{inputs.nested-folder}} ]; then
+                 ls -la
                  cd ${{inputs.nested-folder}}
                  fi
             rsync -arv ${{inputs.included-files}} ./${{inputs.source-directory}}
