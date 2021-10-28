@@ -42,6 +42,7 @@ runs:
                  echo ${{inputs.included-files}}
                  ls -la
                  echo 'python'
+                 echo ${{inputs.nested-folder}}
                  cd ${{inputs.nested-folder}}
                  fi
             rsync -arv ${{inputs.included-files}} ./${{inputs.source-directory}}
