@@ -39,8 +39,8 @@ runs:
             exit 0
           elif [[ "${{inputs.repository-type}}" = "python" ]]; then
             if [ -n ${{inputs.nested-folder}} ]; then
+                 echo ${{inputs.included-files}}
                  ls -la
-                 echo ${inputs.included-files}
                  echo 'python'
                  cd ${{inputs.nested-folder}}
                  fi
