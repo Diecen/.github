@@ -28,6 +28,7 @@ runs:
         shell: bash
         run: | 
           echo ${{inputs.nested-folder}}
+          echo ${{inputs.nested-folder}}
           if [[ "${{inputs.repository-type}}" = "typescript" ]]; then
             if [ -n "${{inputs.nested-folder}}" ]; then
                  echo 'type'
