@@ -34,7 +34,7 @@ runs:
             rsync -arv ${"inputs.included-files"} ./${inputs.source-directory}
             exit 0
           elif [[ "${{inputs.repository-type}}" = "python" ]]; then
-            if [[ -n ${{inputs.nested-folder}} ]]; then
+            if -n ${{inputs.nested-folder}}; then
                  cd ${inputs.nested-folder}
             rsync -arv ${inputs.included-files} ./${inputs.source-directory}
             exit 0
