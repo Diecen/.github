@@ -57,6 +57,17 @@ runs:
       - name: Install NPM dependencies and create folder with files used in subsequent steps
         shell: bash
         run: | 
+          echo ${inputs.token}
+          echo ${inputs.included-files}
+          echo ${inputs.source-directory}
+          echo ${inputs.repository-type}
+          echo ${inputs.path-to-json}
+          echo ${inputs.repository-name}
+          echo ${inputs.staging-bucket}
+          echo ${inputs.access-key-staging}
+          echo ${inputs.secret-key-staging}
+          echo ${inputs.access-key-production}
+          echo ${inputs.secret-key-production}
           if [[ "${{inputs.repository-type}}" = "typescript" ]]; then
             if [ -n "${{inputs.nested-folder}}" ]; then
                  cd ${{inputs.nested-folder}}
