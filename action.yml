@@ -32,7 +32,7 @@ runs:
                  cd ${{inputs.nested-folder}}
                  fi
             npm install
-            rsync -arv ${{"inputs.included-files"}} ./${{inputs.source-directory}}
+            rsync -arv ${"inputs.included-files"} ./${inputs.source-directory}
             exit 0
           elif [[ "${{inputs.repository-type}}" = "python" ]]; then
             if [ -n "${{inputs.nested-folder}}" ]; then
@@ -48,4 +48,4 @@ runs:
       - name: Install NPM dependencies and create folder with files used in subsequent steps
         shell: bash
         run: | 
-         echo 'sdfgh'
+            echo 'no nie'
