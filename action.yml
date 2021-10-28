@@ -31,7 +31,7 @@ runs:
             if [ -n ${{inputs.nested-folder}} ]; then
                  ls -la
                  echo 'mdmdm'
-                 echo ${{inputs.nested-folder}}
+                 echo ${inputs.nested-folder}
                  cd ${inputs.nested-folder}
                  fi
             npm install
