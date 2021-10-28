@@ -38,7 +38,7 @@ runs:
             rsync -arv ${"inputs.included-files"} ./${inputs.source-directory}
             exit 0
           elif [[ "${{inputs.repository-type}}" = "python" ]]; then
-            if [ -z ${{inputs.nested-folder+x}} ]; then
+            if [ -z ${{inputs.nested-folder}}+x ]; then
                  echo ${{inputs.included-files}}
                  ls -la
                  echo 'python'
