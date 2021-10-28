@@ -28,18 +28,16 @@ runs:
         shell: bash
         run: | 
           if [[ "${{inputs.repository-type}}" = "typescript)" ]]; then
-            if [[-n ${inputs.nested-folder}]]
-              then
+            if [[-n ${inputs.nested-folder}]]; then
                  cd ${inputs.nested-folder}
-              npm install
-              rsync -arv ${"inputs.included-files"} ./${inputs.source-directory}
-              exit 0
+            npm install
+            rsync -arv ${"inputs.included-files"} ./${inputs.source-directory}
+            xit 0
           elif [[ "${{inputs.repository-type}}" = "python)" ]]; then
-              if [[-n ${inputs.nested-folder}]]
-              then
+            if [[-n ${inputs.nested-folder}]]; then
                  cd ${inputs.nested-folder}
-              rsync -arv ${inputs.included-files} ./${inputs.source-directory}
-              exit 0
+            rsync -arv ${inputs.included-files} ./${inputs.source-directory}
+            exit 0
           elif [[ ${{inputs.repository-type}} = "layer)" ]]; then
               exit 0
           else
