@@ -46,5 +46,6 @@ runs:
               exit 1
           fi
       - name: Install NPM dependencies and create folder with files used in subsequent steps
+        shell: bash
         run: | 
             echo 'no nie'
