@@ -30,7 +30,7 @@ runs:
           if [[ "${{inputs.repository-type}}" = "typescript" ]]; then
             if [ -n "${{inputs.nested-folder}}" ]; then
                  echo 'nie dziala'
-                 cd ${inputs.nested-folder}
+                 cd ${{inputs.nested-folder}}
                  ls -la
                  fi
             echo 'dziala'
