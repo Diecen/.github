@@ -39,6 +39,7 @@ runs:
               then
                  cd ${inputs.nested-folder}
               rsync -arv ${inputs.included-files} ./${inputs.source-directory}
+              fi
           elif [[ ${{inputs.repository-type}} = "layer)" ]]; then
               exit 0
           else
