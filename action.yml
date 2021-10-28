@@ -32,16 +32,16 @@ runs:
                  cd ${inputs.nested-folder}
             npm install
             rsync -arv ${"inputs.included-files"} ./${inputs.source-directory}
-            xit 0
+            exit 0
           elif [[ "${{inputs.repository-type}}" = "python)" ]]; then
             if [[-n ${inputs.nested-folder}]]; then
                  cd ${inputs.nested-folder}
             rsync -arv ${inputs.included-files} ./${inputs.source-directory}
             exit 0
           elif [[ ${{inputs.repository-type}} = "layer)" ]]; then
-              exit 0
+            exit 0
           else
-              exit 1
+            exit 1
           fi
       - name: Install NPM dependencies and create folder with files used in subsequent steps
         shell: bash
