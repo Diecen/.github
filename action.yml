@@ -98,13 +98,6 @@ runs:
           cd ${inputs.source-directory}
           touch ${inputs.repository-name}.txt
           echo "${{steps.version.outputs.prop}}" >> ${inputs.repository-name}.txt
-      - name: Upload code under Release tag
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{steps.version.outputs.prop}}
-          body: ${{ github.event.head_commit.message }}
-          artifacts: ./${{inputs.source-directory}}/${{inputs.repository-name}}-${{steps.version.outputs.prop}}.zip
-          token: ${{ ${inputs.token} }}
       - name: Send zip file to S3 staging
         uses: jakejarvis/s3-sync-action@master
         with:
