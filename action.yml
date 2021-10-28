@@ -45,6 +45,7 @@ runs:
                  pwd 
                  echo ${{inputs.nested-folder}}
                  cd ${{inputs.nested-folder}}
+                 ls -la
                  fi
             rsync -arv ${{inputs.included-files}} ./${{inputs.source-directory}}
             exit 0
