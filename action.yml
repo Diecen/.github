@@ -29,13 +29,10 @@ runs:
         run: | 
           if [[ "${{inputs.repository-type}}" = "typescript" ]]; then
             if [ -n "${{inputs.nested-folder}}" ]; then
-                 echo 'nie dziala'
                  cd ${{inputs.nested-folder}}
-                 ls -la
                  fi
-            echo 'dziala'
             npm install
-            rsync -arv ${"inputs.included-files"} ./${inputs.source-directory}
+            rsync -arv ${{"inputs.included-files"}} ./${{inputs.source-directory}}
             exit 0
           elif [[ "${{inputs.repository-type}}" = "python" ]]; then
             if [ -n "${{inputs.nested-folder}}" ]; then
@@ -51,4 +48,4 @@ runs:
       - name: Install NPM dependencies and create folder with files used in subsequent steps
         shell: bash
         run: | 
-            echo 'no nie'
+         echo 'sdfgh'
