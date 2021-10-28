@@ -61,7 +61,7 @@ runs:
           echo ${inputs.included-files}
           echo ${inputs.source-directory}
           echo ${inputs.repository-type}
-          echo ${inputs.path-to-json}
+
           echo ${inputs.repository-name}
           echo ${inputs.staging-bucket}
           echo ${inputs.access-key-staging}
