@@ -28,22 +28,17 @@ runs:
         shell: bash
         run: | 
           if [[ "${{inputs.repository-type}}" = "typescript" ]]; then
-            if [ -n ${{inputs.nested-folder}} ]; then
-                 ls -la
+            if [ -n "${{inputs.nested-folder}}" ]; then
                  echo 'type'
-                 echo ${inputs.nested-folder}
                  cd ${inputs.nested-folder}
+                 ls -la
                  fi
             npm install
             rsync -arv ${"inputs.included-files"} ./${inputs.source-directory}
             exit 0
           elif [[ "${{inputs.repository-type}}" = "python" ]]; then
             if [ -n "${{inputs.nested-folder}}" ]; then
-                 echo ${{inputs.included-files}}
-                 ls -la
                  echo 'python'
-                 pwd 
-                 echo ${{inputs.nested-folder}}
                  cd ${{inputs.nested-folder}}
                  ls -la
                  fi
