@@ -40,7 +40,7 @@ runs:
                  fi
             rsync -arv ${{inputs.included-files}} ./${{inputs.source-directory}}
             exit 0
-          elif [[ ${{inputs.repository-type}} = "layer" ]]; then
+          elif [[ ${inputs.repository-type} = "layer" ]]; then
             exit 0
           else
             exit 1
