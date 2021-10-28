@@ -30,7 +30,7 @@ runs:
           if [[ "${{inputs.repository-type}}" = "typescript" ]]; then
             if [ -n ${{inputs.nested-folder}} ]; then
                  ls -la
-                 echo 'mdmdm'
+                 echo 'type'
                  echo ${inputs.nested-folder}
                  cd ${inputs.nested-folder}
                  fi
@@ -40,8 +40,8 @@ runs:
           elif [[ "${{inputs.repository-type}}" = "python" ]]; then
             if [ -n ${{inputs.nested-folder}} ]; then
                  ls -la
-                 echo 'mdmdm'
-                 echo ${{inputs.nested-folder}}
+                 echo ${inputs.included-files}
+                 echo 'python'
                  cd ${{inputs.nested-folder}}
                  fi
             rsync -arv ${{inputs.included-files}} ./${{inputs.source-directory}}
