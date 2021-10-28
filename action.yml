@@ -28,7 +28,7 @@ runs:
         shell: bash
         run: | 
           if [[ "${{inputs.repository-type}}" = "typescript" ]]; then
-            if [[ -n ${{inputs.nested-folder}} ]]; then
+            if -n ${{inputs.nested-folder}}; then
                  cd ${inputs.nested-folder}
             npm install
             rsync -arv ${"inputs.included-files"} ./${inputs.source-directory}
