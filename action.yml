@@ -16,7 +16,7 @@ inputs:
      required: true
    nested-folder:
      description: "Folder name if files are nested"
-     required: false
+     required: true
 
 runs:
    using: "composite"
