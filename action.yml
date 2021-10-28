@@ -38,7 +38,6 @@ runs:
               if [[-n ${inputs.nested-folder}]]
               then
                  cd ${inputs.nested-folder}
-              fi
               rsync -arv ${inputs.included-files} ./${inputs.source-directory}
           elif [[ ${{inputs.repository-type}} = "layer)" ]]; then
               exit 0
