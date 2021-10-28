@@ -34,13 +34,13 @@ runs:
               fi
               npm install
               rsync -arv ${"inputs.included-files"} ./${inputs.source-directory}
-          elif [[ "${inputs.repository-type}" = "python)" ]]; then
+          elif [[ "${{inputs.repository-type}}" = "python)" ]]; then
               if [[-n ${inputs.nested-folder}]]
               then
                  cd ${inputs.nested-folder}
               fi
               rsync -arv ${inputs.included-files} ./${inputs.source-directory}
-          elif [[${inputs.repository-type} = "layer)"]]; then
+          elif [[ ${{inputs.repository-type}} = "layer)" ]]; then
               exit 0
           else
               exit 1
