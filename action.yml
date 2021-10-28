@@ -28,7 +28,7 @@ runs:
         shell: bash
         run: | 
           if [[ "${{inputs.repository-type}}" = "typescript" ]]; then
-            if [ -z ${{inputs.nested-folder}} ]; then
+            if [ -n ${{inputs.nested-folder}} ]; then
                  ls -la
                  echo 'type'
                  echo ${inputs.nested-folder}
@@ -38,7 +38,7 @@ runs:
             rsync -arv ${"inputs.included-files"} ./${inputs.source-directory}
             exit 0
           elif [[ "${{inputs.repository-type}}" = "python" ]]; then
-            if [ -z ${{inputs.nested-folder}}+x ]; then
+            if [ -n ${{inputs.nested-folder}} ]; then
                  echo ${{inputs.included-files}}
                  ls -la
                  echo 'python'
