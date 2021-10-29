@@ -98,6 +98,13 @@ runs:
           cd ${{inputs.source-directory}}
           touch ${{inputs.repository-name}}.txt
           echo "${{steps.version.outputs.prop}}" >> ${{inputs.repository-name}}.txt
+      - name: Upload code under Release tag
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{steps.version.outputs.prop}}
+          body: ${{ github.event.head_commit.message }}
+          artifacts: ./${{inputs.source-directory}}/${{inputs.repository-name}}-${{steps.version.outputs.prop}}.zip
+          token: ${{ ${inputs.token} }}
       - name: Send zip file to S3 staging
         uses: jakejarvis/s3-sync-action@master
         with:
@@ -106,7 +113,7 @@ runs:
           AWS_S3_BUCKET: ${{inputs.staging-bucket}}
           AWS_ACCESS_KEY_ID: ${{inputs.access-key-staging}}
           AWS_SECRET_ACCESS_KEY: ${{inputs.secret-key-staging}}
-          SOURCE_DIR: './${inputs.source-directory}'
+          SOURCE_DIR: './${{inputs.source-directory}}'
       - name: Send zip file to S3 production
         uses: jakejarvis/s3-sync-action@master
         with:
