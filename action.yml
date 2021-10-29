@@ -41,7 +41,10 @@ inputs:
    nested-folder:
      description: "Folder name if files are nested"
      required: false
-
+   s3-layer-folder:
+     description: "S3 layers folder"
+     required: false
+     
 runs:
    using: "composite"
    steps:
@@ -114,6 +117,7 @@ runs:
           AWS_ACCESS_KEY_ID: ${{inputs.access-key-staging}}
           AWS_SECRET_ACCESS_KEY: ${{inputs.secret-key-staging}}
           SOURCE_DIR: './${{inputs.source-directory}}'
+          DEST_DIR: '${{inputs.s3-layer-folder}}'
       - name: Send zip file to S3 production
         uses: jakejarvis/s3-sync-action@master
         with:
@@ -123,4 +127,4 @@ runs:
           AWS_ACCESS_KEY_ID: ${{inputs.access-key-production}}
           AWS_SECRET_ACCESS_KEY: ${{inputs.secret-key-production}}
           SOURCE_DIR: './${inputs.source-directory}'
-
+          DEST_DIR: '${{inputs.s3-layer-folder}}'
