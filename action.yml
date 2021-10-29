@@ -117,7 +117,7 @@ runs:
       - name: Send zip file to S3 production
         uses: jakejarvis/s3-sync-action@master
         with:
-          args:  --delete --exclude '*' --include ${inputs.repository-name}}-${{steps.version.outputs.prop}}.zip
+          args:  --delete --exclude '*' --include ${{inputs.repository-name}}-${{steps.version.outputs.prop}}.zip
         env:
           AWS_S3_BUCKET: ${{inputs.production-bucket}}
           AWS_ACCESS_KEY_ID: ${{inputs.access-key-production}}
