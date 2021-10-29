@@ -52,7 +52,7 @@ runs:
         id: version
         uses: notiz-dev/github-action-json-property@release
         with: 
-           path: '${inputs.path-to-json}'
+           path: '${{inputs.path-to-json}}'
            prop_path: 'version'
       - name: Install NPM dependencies and create folder with files used in subsequent steps
         shell: bash
