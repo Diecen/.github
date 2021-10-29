@@ -61,15 +61,16 @@ runs:
             if [ -n "${{inputs.nested-folder}}" ]; then
                  cd ${{inputs.nested-folder}}
                  fi
+            echo 'type'
             npm install
-            rsync -arv --exclude='/*/.local' --include=${{inputs.included-files}} ./${{inputs.source-directory}}
+            rsync -arv --include=${{inputs.included-files}} ./${{inputs.source-directory}}
             exit 0
           elif [[ "${{inputs.repository-type}}" = "python" ]]; then
             if [ -n "${{inputs.nested-folder}}" ]; then
                  cd ${{inputs.nested-folder}}
                  fi
             echo 'python'
-            rsync -arv --exclude='/*/.local' --include=${{inputs.included-files}} ./${{inputs.source-directory}}
+            rsync -arv --include=${{inputs.included-files}} ./${{inputs.source-directory}}
             exit 0
           elif [[ ${{inputs.repository-type}} = "layer" ]]; then
             exit 0
