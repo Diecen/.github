@@ -75,6 +75,15 @@ runs:
           else
             exit 1
           fi
+      - name: Install NPM dependencies and create folder with files used in subsequent steps
+        shell: bash
+        run: | 
+            ls -la
+      - name: Install NPM dependencies and create folder with files used in subsequent steps
+        shell: bash
+        run: | 
+            cd relesae
+            ls -la
       - name: Archive files for S3 package
         uses: thedoctor0/zip-release@master
         with:
