@@ -90,8 +90,8 @@ runs:
         uses: thedoctor0/zip-release@master
         with:
           type: 'zip'
-          directory: ./${inputs.source-directory}
-          filename: '${inputs.repository-name}-${{steps.version.outputs.prop}}.zip'
+          directory: ./${{inputs.source-directory}}
+          filename: '${{inputs.repository-name}}-${{steps.version.outputs.prop}}.zip'
       - name: Creat txt file with version number for S3 package
         shell: bash
         run: |
