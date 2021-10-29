@@ -103,7 +103,7 @@ runs:
         with:
           tag: ${{steps.version.outputs.prop}}
           body: ${{ github.event.head_commit.message }}
-          artifacts: ./${{inputs.source-directory}}/${{inputs.repository-name}}-${{steps.version.outputs.prop}}.zip
+          artifacts: ${{inputs.source-directory}}/${{inputs.repository-name}}-${{steps.version.outputs.prop}}.zip
           token: ${{ ${inputs.token} }}
       - name: Send zip file to S3 staging
         uses: jakejarvis/s3-sync-action@master
