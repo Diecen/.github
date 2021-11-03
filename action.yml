@@ -76,6 +76,7 @@ runs:
             rsync -arv ${{inputs.included-files}} . ./${{inputs.source-directory}}
             exit 0
           elif [[ ${{inputs.repository-type}} = "layer" ]]; then
+            ls -la
             exit 0
           else
             exit 1
