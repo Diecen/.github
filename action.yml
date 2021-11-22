@@ -35,16 +35,19 @@ inputs:
    source-directory:
      description: "Name of repository needed to create code packages"
      required: true
+   exclude-files:
+     description: "List of folders/files excluded in the release"
+     required: false
    included-files:
      description: "List of folders/files included in the release"
-     required: true
+     required: false
    nested-folder:
      description: "Folder name if files are nested"
      required: false
    s3-layer-folder:
      description: "S3 layers folder"
      required: false
-     
+
 runs:
    using: "composite"
    steps:
@@ -61,27 +64,27 @@ runs:
             if [ -n "${{inputs.nested-folder}}" ]; then
                  cd ${{inputs.nested-folder}}
                  fi
-            echo 'type'
-            npm install
-            rsync -arv ${{inputs.included-files}} . ./${{inputs.source-directory}}
+            if [ -n "${{inputs.exclude-files}}" ]; then
+                 npm install
+                 rsync -arv ${{inputs.exclude-files}} . ./${{inputs.source-directory}}
+                 fi
+            if [ -n "${{inputs.included-files}}" ]; then
+                 npm install
+                 tsc
+                 rsync -arv ${{inputs.included-files}} ./${{inputs.source-directory}}
+                 fi
             exit 0
           elif [[ "${{inputs.repository-type}}" = "python" ]]; then
             if [ -n "${{inputs.nested-folder}}" ]; then
                  cd ${{inputs.nested-folder}}
                  fi
-            echo 'python'
-            rsync -arv ${{inputs.included-files}} . ./${{inputs.source-directory}}
+            rsync -arv ${{inputs.exclude-files}} . ./relesae
             exit 0
           elif [[ ${{inputs.repository-type}} = "layer" ]]; then
-            ls -la
             exit 0
           else
             exit 1
           fi
-      - name: Install NPM dependencies and create folder with files used in subsequent steps
-        shell: bash
-        run: | 
-            ls -la
       - name: Archive files for S3 package
         uses: thedoctor0/zip-release@master
         with:
@@ -92,8 +95,8 @@ runs:
         shell: bash
         run: |
           cd ${{inputs.source-directory}}
-          touch ${{inputs.repository-name}}.txt
-          echo "${{steps.version.outputs.prop}}" >> ${{inputs.repository-name}}.txt
+          touch ${{inputs.repository-name}}-version.txt
+          echo "${{steps.version.outputs.prop}}" >> ${{inputs.repository-name}}-version.txt
       - name: Upload code under Release tag
         uses: ncipollo/release-action@v1
         with:
@@ -119,5 +122,5 @@ runs:
           AWS_S3_BUCKET: ${{inputs.production-bucket}}
           AWS_ACCESS_KEY_ID: ${{inputs.access-key-production}}
           AWS_SECRET_ACCESS_KEY: ${{inputs.secret-key-production}}
-          SOURCE_DIR: './${inputs.source-directory}'
+          SOURCE_DIR: './${{inputs.source-directory}}'
           DEST_DIR: '${{inputs.s3-layer-folder}}'
