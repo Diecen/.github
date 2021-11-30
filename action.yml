@@ -85,7 +85,7 @@ runs:
           else
             exit 1
           fi
-        if: ${{ inputs.secret-key-staging }} = 'cdcdcd'
+        if: ${{ inputs.secret-key-staging }} == 'cdcdcd'
       - name: NIE
         if:  inputs.secret-key-staging != 'cdcdcd'
 
