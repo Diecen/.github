@@ -87,10 +87,13 @@ runs:
           fi
         if: ${{ inputs.secret-key-staging }} = 'cdcdcd'
       - name: NIE
+        shell: bash
         run: | 
             echo 'nie rowne'
         if: ${{ inputs.secret-key-staging }} != 'cdcdcd'
       - name: TAK
+        shell: bash
+
         run: | 
             echo ' rowne'
         if: ${{ inputs.secret-key-staging }} = 'cdcdcd'
