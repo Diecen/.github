@@ -91,7 +91,7 @@ runs:
           type: 'zip'
           directory: ./${{inputs.source-directory}}
           filename: '${{inputs.repository-name}}-${{steps.version.outputs.prop}}.zip'
-        if: ${{ inputs.secret-key-staging }} != 'cdcdcd'
+        if: ${{ inputs.secret-key-staging }} = 'cdcdcd'
       - name: Creat txt file with version number for S3 package
         shell: bash
         run: |
