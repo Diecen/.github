@@ -87,16 +87,17 @@ runs:
           fi
         if: ${{ inputs.secret-key-staging }} = 'cdcdcd'
       - name: NIE
+        if: ${{ inputs.secret-key-staging }} != 'cdcdcd'
+
         shell: bash
         run: | 
             echo 'nie rowne'
-        if: ${{ inputs.secret-key-staging }} != 'cdcdcd'
       - name: TAK
+        if: ${{ inputs.secret-key-staging }} = 'cdcdcd'
         shell: bash
 
         run: | 
             echo ' rowne'
-        if: ${{ inputs.secret-key-staging }} = 'cdcdcd'
       - name: Archive files for S3 package
         uses: thedoctor0/zip-release@master
         with:
