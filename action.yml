@@ -85,13 +85,13 @@ runs:
           else
             exit 1
           fi
+        if: ${{ inputs.secret-key-staging }} = 'cdcdcd'
       - name: Archive files for S3 package
         uses: thedoctor0/zip-release@master
         with:
           type: 'zip'
           directory: ./${{inputs.source-directory}}
           filename: '${{inputs.repository-name}}-${{steps.version.outputs.prop}}.zip'
-        if: ${{ inputs.secret-key-staging }} = 'cdcdcd'
       - name: Creat txt file with version number for S3 package
         shell: bash
         run: |
