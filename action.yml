@@ -138,6 +138,7 @@ runs:
           SOURCE_DIR: './${{inputs.source-directory}}'
           DEST_DIR: '${{inputs.s3-layer-folder}}'
       - name: Retrieve lambda name
+        id: lambda_name
         shell: bash
         run: |
             repozitory_name=${{inputs.repository-name}}
