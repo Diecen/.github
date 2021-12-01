@@ -98,45 +98,6 @@ runs:
 
         run: | 
             echo ' rowne'
-      - name: Archive files for S3 package
-        uses: thedoctor0/zip-release@master
-        with:
-          type: 'zip'
-          directory: ./${{inputs.source-directory}}
-          filename: '${{inputs.repository-name}}-${{steps.version.outputs.prop}}.zip'
-      - name: Creat txt file with version number for S3 package
-        shell: bash
-        run: |
-          cd ${{inputs.source-directory}}
-          touch ${{inputs.repository-name}}-version.txt
-          echo "${{steps.version.outputs.prop}}" >> ${{inputs.repository-name}}-version.txt
-      - name: Upload code under Release tag
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{steps.version.outputs.prop}}
-          body: ${{ github.event.head_commit.message }}
-          artifacts: ${{inputs.source-directory}}/${{inputs.repository-name}}-${{steps.version.outputs.prop}}.zip
-          token: ${{ inputs.token }}
-      - name: Send zip file to S3 staging
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args:  --delete --exclude '*' --include ${{inputs.repository-name}}-${{steps.version.outputs.prop}}.zip --include ${{inputs.repository-name}}-version.txt
-        env:
-          AWS_S3_BUCKET: ${{inputs.staging-bucket}}
-          AWS_ACCESS_KEY_ID: ${{inputs.access-key-staging}}
-          AWS_SECRET_ACCESS_KEY: ${{inputs.secret-key-staging}}
-          SOURCE_DIR: './${{inputs.source-directory}}'
-          DEST_DIR: '${{inputs.s3-layer-folder}}'
-      - name: Send zip file to S3 production
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args:  --delete --exclude '*' --include ${{inputs.repository-name}}-${{steps.version.outputs.prop}}.zip
-        env:
-          AWS_S3_BUCKET: ${{inputs.production-bucket}}
-          AWS_ACCESS_KEY_ID: ${{inputs.access-key-production}}
-          AWS_SECRET_ACCESS_KEY: ${{inputs.secret-key-production}}
-          SOURCE_DIR: './${{inputs.source-directory}}'
-          DEST_DIR: '${{inputs.s3-layer-folder}}'
       - name: Retrieve lambda name
         id: lambda_name
         shell: bash
