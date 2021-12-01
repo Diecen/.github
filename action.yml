@@ -143,11 +143,3 @@ runs:
       run: |
           repozitory_name=${{inputs.repository-name}}
           echo "::set-output name=LAMBDA_NAME::${repozitory_name::-7}"
-    - name: Lambda code deploy to staging
-      uses: appleboy/lambda-action@master
-      with:
-        aws_access_key_id: ${{inputs.access-key-staging}}
-        aws_secret_access_key: ${{inputs.secret-key-staging}}
-        aws_region: eu-west-2
-        function_name: ${{steps.lambda_name.outputs.LAMBDA_NAME}}
-        zip_file: ${{inputs.source-directory}}/${{inputs.repository-name}}-${{steps.version.outputs.prop}}.zip
