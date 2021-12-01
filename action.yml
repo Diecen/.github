@@ -138,8 +138,8 @@ runs:
           SOURCE_DIR: './${{inputs.source-directory}}'
           DEST_DIR: '${{inputs.s3-layer-folder}}'
       - name: Retrieve lambda name
-         shell: bash
-         run: |
+        shell: bash
+        run: |
             repozitory_name=${{inputs.repository-name}}
             echo "::set-output name=LAMBDA_NAME::${repozitory_name::-7}"
       - name: Lambda code deploy to staging
