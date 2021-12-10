@@ -92,7 +92,7 @@ runs:
         run: | 
             echo ${GITHUB_REF#refs/heads/}
       - name: TAK
-        if: inputs.secret-key-staging == 'cdcdcd'
+        if: 'main' == ${GITHUB_REF#refs/heads/}
         shell: bash
 
         run: | 
