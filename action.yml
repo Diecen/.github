@@ -92,7 +92,7 @@ runs:
         run: | 
             echo ${GITHUB_REF#refs/heads/}
       - name: TAK
-        if: ${GITHUB_REF#refs/heads/} == main
+        if: github.ref == 'refs/heads/master'
         shell: bash
 
         run: | 
