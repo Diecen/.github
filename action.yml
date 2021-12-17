@@ -19,6 +19,7 @@ runs:
            path: 'src/version.json'
            prop_path: 'version'
        - name: Run schell script
+         shell: bash
          run: |
            chmod +x "./package.sh"
            "./package.sh"
